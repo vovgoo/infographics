@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    font-family: "Montserrat", sans-serif;
+}
+
+.box {
+    --n: 20;   
+    --d: 8deg; 
+    --t: 5px;  
+    --c: linear-gradient(110deg, #a855f7 0%, #d846ef 100%); 
+    
+    aspect-ratio: 1;
+    animation: rotate 25s linear infinite; 
+}
+
+.box::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: var(--t);
+    background: var(--c);
+    mask:
+        linear-gradient(#0000 0 0) content-box,
+        repeating-conic-gradient(
+           from calc(var(--d)/2),
+           #000  0 calc(360deg/var(--n) - var(--d)),
+           #0000 0 calc(360deg/var(--n))
+         );
+    mask-composite: intersect;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.text-section-2 {
+    background: linear-gradient(90deg, #a855f7 0%, #d846ef 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.selected {
+  @apply text-black px-5 py-1 rounded-md border-2 border-black bg-white;
+}
+
+.shuffle-container {
+  max-width: 1283px;
+}
+
+.swiper-pagination {
+  bottom: 0px !important;
+}
+
+.marquee {
+  display: flex;
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(-52%);
+  }
+}
+
+@media (max-width: 1528px) {
+  .shuffle-container {
+    max-width: 860px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .shuffle-container {
+    max-width: 430px;
+  }
+
+  .portfolio-card {
+    margin: 0 auto;
+  } 
+}
+
+@media (max-width: 640px) {
+  .shuffle-container {
+    max-width: 100%;
+  } 
+}
+
+
